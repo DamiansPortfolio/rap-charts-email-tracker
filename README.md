@@ -1,70 +1,164 @@
-# Getting Started with Create React App
+# Rap Chart Email Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Node.js/React application that tracks and emails users when their favorite rap artists appear on PopVortex's Top 25 chart, either as main or featured artists.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Real-time web scraping of PopVortex's top rap charts
+- Tracks both main artist and featured artist appearances
+- Automated email notifications with formatted HTML content
+- User-friendly React frontend interface
+- Support for tracking multiple artists simultaneously
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before installation, make sure you have:
+1. Node.js installed on your computer
+2. A Gmail account
+3. Gmail App Password (not your regular Gmail password)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to Get Gmail App Password
+1. Go to your Google Account settings
+2. Navigate to Security
+3. Enable 2-Step Verification if not already enabled
+4. Go to App Passwords
+5. Select 'Mail' and 'Other (Custom name)'
+6. Create a name for your app (e.g., "Rap Chart Tracker")
+7. Copy the generated 16-character password
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+```bash
+git clone https://github.com/DamiansPortfolio/rap-charts-email-tracker.git
+cd rap-charts-email-tracker
+```
 
-### `npm run build`
+2. Install backend dependencies:
+```bash
+cd backend
+npm install express cors axios cheerio nodemailer
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Create credentials.json in the backend folder:
+```json
+{
+  "from": "Your Name <your-gmail@gmail.com>",
+  "sender_email": "your-gmail@gmail.com",
+  "sender_password": "your-16-char-app-password"
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Install frontend dependencies:
+```bash
+cd ../frontend
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Running the Application
 
-### `npm run eject`
+1. Start the backend server (from the backend directory):
+```bash
+node server.js
+```
+You should see: "Server running on port 5001"
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. In a new terminal, start the frontend (from the frontend directory):
+```bash
+npm start
+```
+The app will open in your browser at http://localhost:3000
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How to Use
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Enter your email address in the email field
+2. Enter artist names separated by commas (e.g., "Drake, Travis Scott, Future")
+3. Click "Send Updates"
+4. Check your email for the results
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Example Email Format:
+```
+Your artist(s) are: Drake and Travis Scott
 
-## Learn More
+Drake: Rich Flex
+Drake: Jimmy Cooks
+Travis Scott: SICKO MODE
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Featured Appearances:
+Future: WAIT FOR U (feat. Drake)
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Troubleshooting
 
-### Code Splitting
+Common issues and solutions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. **"Error: Invalid login"**
+   - Make sure you're using an App Password, not your regular Gmail password
+   - Verify your email address in credentials.json matches your Gmail account
 
-### Analyzing the Bundle Size
+2. **"Port already in use" error**
+   - Kill all Node processes: `killall node`
+   - Try starting the server again
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. **No email received**
+   - Check your spam folder
+   - Verify the artist names are spelled correctly
+   - Make sure the artists are currently in the top 25 rap songs
 
-### Making a Progressive Web App
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+rap-charts-email-tracker/
+├── backend/
+│   ├── server.js
+│   ├── credentials.json
+│   └── package.json
+└── frontend/
+    ├── public/
+    │   └── index.html
+    ├── src/
+    │   ├── App.js
+    │   ├── App.css
+    │   └── index.js
+    └── package.json
+```
 
-### Advanced Configuration
+## Security Considerations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Never commit credentials.json to version control
+- Keep your Gmail App Password secure
+- Use environment variables for sensitive data in production
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Feel free to contribute to this project:
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License.
+
+## Support
+
+If you encounter any issues:
+1. Check the console logs in your browser
+2. Check the terminal running your backend server
+3. Verify your Gmail App Password is correct
+4. Make sure both frontend and backend servers are running
+
+## Author
+
+[Damian Rozycki](https://github.com/damiansportfolio) - Software Developer
+
+Recent Computer Science graduate passionate about building practical web applications and automation tools. Constantly exploring new technologies and looking for opportunities in software development. This project showcases my skills in:
+- Full-stack development (Node.js, React)
+- RESTful API design
+- Web scraping and automation
+- Email integration
+- User interface design
+
+Feel free to check out my other projects on my [GitHub profile](https://github.com/damiansportfolio) or reach out for collaboration opportunities!
