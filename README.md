@@ -2,6 +2,10 @@
 
 A Node.js/React application that tracks and emails users when their favorite rap artists appear on PopVortex's Top 25 chart, either as main or featured artists.
 
+## Project Overview
+
+This project began as a terminal-based application developed for a web development course at TU, designed to scrape rap charts and notify users about their favorite artists via email. I enhanced it by transforming it into a full-stack web application with a React frontend, making it more accessible and user-friendly.
+
 ## Features
 
 - Real-time web scraping of PopVortex's top rap charts
